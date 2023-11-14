@@ -1,1 +1,63 @@
-<p>todolist works!</p>
+<app-add-task
+(sendTaskToParent)="onReceiveNewTask($event)">
+</app-add-task>
+<h2 class="text-center">Your To-do List</h2>
+
+<div class="mx-3">
+  <h3>Task to do:</h3>
+  <ul class="list-group">
+    <li class="my-2 d-flex" *ngFor="let task of getUncompletedTasks()">
+
+      <div class="d-flex justify-content-center align-items-center mx-2">
+        <button (click)="toggleTaskStatus(task)" class="btn btn-secondary btn-shadow rounded-circle">
+          <i class="bi bi-check-lg fs-3"></i>
+        </button>
+      </div>
+
+      <div class="card bg-secondary w-100 text-white shadow-lg">
+        <div class="card-header">
+          {{task.title}}
+        </div>
+
+        <div class="card-body">
+          <p class="card-text">{{task.description}}</p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center mx-2">
+        <button (click)="removeTask(task)" class="btn btn-danger btn-shadow rounded-circle">
+          <i class="bi bi-trash fs-3"></i>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="mx-3 mt-4">
+  <h3>Task done:</h3>
+  <ul class="list-group">
+    <li class="my-2 d-flex" *ngFor="let task of getCompletedTasks()">
+      <div class="d-flex justify-content-center align-items-center mx-2">
+        <button (click)="toggleTaskStatus(task)" class="btn btn-success btn-shadow rounded-circle">
+          <i class="bi bi-check-lg fs-3"></i>
+        </button>
+      </div>
+
+      <div class="card bg-success w-100 text-white shadow-lg">
+        <div class="card-header text-decoration-line-through">
+          {{task.title}}
+        </div>
+
+        <div class="card-body">
+          <p class="card-text text-decoration-line-through">{{task.description}}</p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center mx-2">
+        <button (click)="removeTask(task)" class="btn btn-danger btn-shadow rounded-circle">
+          <i class="bi bi-trash fs-3"></i>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

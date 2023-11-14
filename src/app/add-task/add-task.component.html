@@ -1,8 +1,9 @@
-<form class="m-5" #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
-  <fieldset>
+<div class="card bg-secondary text-white m-4 p-2 shadow-lg">
+  <form #myForm="ngForm" (ngSubmit)="myForm.valid && createTask()">
+    <fieldset>
     <label class="form-label" for="title-task">Title</label>
     <input class="form-control" id="title-task" name="title-task" type="text" [(ngModel)]="task.title" #title="ngModel" required minlength="5" maxlength="50">
-  </fieldset>
+    </fieldset>
 
   <div *ngIf="title.errors">
     <span class="text-danger" *ngIf="title.errors?.['required']">The title is required</span>
@@ -10,7 +11,7 @@
     <span class="text-danger" *ngIf="title.errors?.['maxlength']">The title should have maximum 50 characters</span>
   </div>
 
-  <fieldset>
+  <fieldset class="mt-2">
     <label class="form-label" for="description-task">Description</label>
     <input class="form-control" id="description-task" name="description-task" type="text" [(ngModel)]="task.description" #description="ngModel" required minlength="5" maxlength="255">
   </fieldset>
@@ -25,6 +26,7 @@
   <div class="d-flex justify-content-center my-3">
 
     <button *ngIf="myForm.invalid" class="btn btn-danger" type="submit">Form invalid</button>
-    <button *ngIf="myForm.valid" class="btn btn-primary" type="submit">Add Task</button>
+    <button *ngIf="myForm.valid" class="btn btn-success" type="submit">Add Task</button>
   </div>
 </form>
+</div>

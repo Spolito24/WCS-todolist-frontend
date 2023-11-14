@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Task } from '../model/Task';
 
 @Component({
@@ -12,8 +12,11 @@ export class AddTaskComponent {
 
   constructor() {}
 
-  //j'affiche le résultat du formulaire dans la console
-  onSubmit() {
-    console.log(this.task);
+  @Output()
+  sendTaskToParent: EventEmitter<Task> = new EventEmitter<Task>();
+
+  //j'envoie la tâche au parent lors de la soumission du formulaire
+  createTask() {
+    this.sendTaskToParent.emit(this.task);
   }
 }
