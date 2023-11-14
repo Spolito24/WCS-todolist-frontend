@@ -1,1 +1,30 @@
-<p>add-task works!</p>
+<form class="m-5" #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+  <fieldset>
+    <label class="form-label" for="title-task">Title</label>
+    <input class="form-control" id="title-task" name="title-task" type="text" [(ngModel)]="task.title" #title="ngModel" required minlength="5" maxlength="50">
+  </fieldset>
+
+  <div *ngIf="title.errors">
+    <span class="text-danger" *ngIf="title.errors?.['required']">The title is required</span>
+    <span class="text-danger" *ngIf="title.errors?.['minlength']">The title should have minimum 5 characters</span>
+    <span class="text-danger" *ngIf="title.errors?.['maxlength']">The title should have maximum 50 characters</span>
+  </div>
+
+  <fieldset>
+    <label class="form-label" for="description-task">Description</label>
+    <input class="form-control" id="description-task" name="description-task" type="text" [(ngModel)]="task.description" #description="ngModel" required minlength="5" maxlength="255">
+  </fieldset>
+
+  <div *ngIf="description.errors">
+    <span class="text-danger" *ngIf="description.errors?.['required']">The title is required</span>
+    <span class="text-danger" *ngIf="description.errors?.['minlength']">The description should have minimum 5 characters</span>
+    <span class="text-danger" *ngIf="description.errors?.['maxlength']">The description should have maximum 50 characters</span>
+  </div>
+
+
+  <div class="d-flex justify-content-center my-3">
+
+    <button *ngIf="myForm.invalid" class="btn btn-danger" type="submit">Form invalid</button>
+    <button *ngIf="myForm.valid" class="btn btn-primary" type="submit">Add Task</button>
+  </div>
+</form>
