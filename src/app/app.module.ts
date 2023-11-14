@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { TodolistComponent } from './todolist/todolist.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     TodolistComponent,
     AddTaskComponent,
     TaskDetailComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, NgbModule],
   providers: [],
