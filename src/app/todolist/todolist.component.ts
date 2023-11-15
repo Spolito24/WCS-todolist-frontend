@@ -32,9 +32,8 @@ export class TodolistComponent implements OnInit {
   }
 
   toggleTaskStatus(task: Task): void {
-    this.taskService.update(task.id, task).subscribe(() => {
-      task.done = !task.done;
-    });
+    task.done = !task.done;
+    this.taskService.update(task.id, task).subscribe(() => {});
   }
 
   getUncompletedTasks(): Task[] {
