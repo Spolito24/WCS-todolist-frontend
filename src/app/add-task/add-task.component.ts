@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { TaskService } from '../service/task.service';
 import { Task } from '../model/Task';
 
 @Component({
@@ -7,16 +8,12 @@ import { Task } from '../model/Task';
   styleUrls: ['./add-task.component.scss'],
 })
 export class AddTaskComponent {
-  //j'instancie le model de données
-  task: Task = new Task('', '', false);
+  task: Task = new Task(0, '', '', false);
 
-  constructor() {}
+  constructor(private taskService: TaskService) {}
 
-  @Output()
-  sendTaskToParent: EventEmitter<Task> = new EventEmitter<Task>();
-
-  //j'envoie la tâche au parent lors de la soumission du formulaire
   createTask() {
-    this.sendTaskToParent.emit(this.task);
+    this.taskService.create(this.task).subscribe((data) => {});
+    location.reload();
   }
 }
