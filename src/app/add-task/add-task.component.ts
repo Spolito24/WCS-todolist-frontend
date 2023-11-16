@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TaskService } from '../service/task.service';
 import { Task } from '../model/Task';
 
 @Component({
@@ -10,10 +9,12 @@ import { Task } from '../model/Task';
 export class AddTaskComponent {
   task: Task = new Task(0, '', '', false);
 
-  constructor(private taskService: TaskService) {}
+  constructor() {}
+
+  @Output()
+  sendTaskToParent: EventEmitter<Task> = new EventEmitter<Task>();
 
   createTask() {
-    this.taskService.create(this.task).subscribe((data) => {});
-    location.reload();
+    this.sendTaskToParent.emit(this.task);
   }
 }

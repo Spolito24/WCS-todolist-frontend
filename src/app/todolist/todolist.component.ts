@@ -22,6 +22,11 @@ export class TodolistComponent implements OnInit {
     });
   }
 
+  onReceiveNewTask(task: Task): void {
+    this.taskService.create(task).subscribe(() => {});
+    this.getAllTasks();
+  }
+
   removeTask(task: Task): void {
     this.taskService.delete(task.id).subscribe(() => {
       const index = this.tasks.indexOf(task);
